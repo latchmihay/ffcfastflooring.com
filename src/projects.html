@@ -67,7 +67,7 @@
                     <div class="fb-page"
                          data-href="https://www.facebook.com/FFASTFLOORINGATL"
                          data-tabs="timeline"
-                         data-width=""
+                         data-width="500"
                          data-height="800"
                          data-small-header="false"
                          data-adapt-container-width="true"
@@ -202,5 +202,30 @@
 
     <script src="/js/main.js"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"></script>
+    <script>
+    // Scale Facebook Page Plugin to fill wider container on desktop
+    (function() {
+        function scaleFB() {
+            var wrapper = document.querySelector('.projects-fb-feed__desktop');
+            if (!wrapper) return;
+            var iframe = wrapper.querySelector('iframe');
+            if (!iframe) return;
+            var iframeWidth = iframe.offsetWidth || 500;
+            var containerWidth = wrapper.offsetWidth;
+            if (containerWidth > iframeWidth && iframeWidth > 0) {
+                var scale = containerWidth / iframeWidth;
+                iframe.style.transform = 'scale(' + scale + ')';
+                iframe.style.transformOrigin = 'top left';
+                wrapper.style.height = (iframe.offsetHeight * scale) + 'px';
+            }
+        }
+        // Run after FB SDK loads and renders
+        window.addEventListener('load', function() {
+            setTimeout(scaleFB, 2000);
+            setTimeout(scaleFB, 4000);
+        });
+        window.addEventListener('resize', function() { setTimeout(scaleFB, 500); });
+    })();
+    </script>
 </body>
 </html>

@@ -1004,8 +1004,12 @@ h2 {
 }
 .projects-fb-feed__desktop {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     min-height: 400px;
+    overflow: hidden;
+}
+.projects-fb-feed__desktop .fb-page {
+    transform-origin: top center;
 }
 .projects-fb-feed__desktop .fb-page,
 .projects-fb-feed__desktop .fb-page span,
